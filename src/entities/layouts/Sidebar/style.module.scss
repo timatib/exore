@@ -1,0 +1,24 @@
+@import "assets/scss/colors.scss";
+
+.wrapper {
+  min-height: 100vh;
+  height: 100%;
+  display: flex;
+  position: relative;
+}
+
+.layout {
+  padding: 24px;
+  width: calc(100vw - 320px);
+  margin-left: 320px;
+  padding-bottom: 40px;
+  background-color: $white;
+}
+
+.menu {
+  width: 320px;
+  position: fixed;
+  overflow: hidden;
+  left: 0;
+  top: 0;
+}

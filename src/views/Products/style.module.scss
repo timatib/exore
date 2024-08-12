@@ -1,0 +1,18 @@
+.wrapper {
+  .list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 50px;
+
+    :global {
+      .ant-card-cover {
+        img {
+          width: 200px;
+          height: 300px;
+          object-fit: contain;
+          margin: 0 auto;
+        }
+      }
+    }
+  }
+}
