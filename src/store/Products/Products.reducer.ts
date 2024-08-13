@@ -2,8 +2,8 @@ import {
   GET_PRODUCTS_LIST_FAILURE,
   GET_PRODUCTS_LIST_REQUEST,
   GET_PRODUCTS_LIST_SUCCESS,
-} from "./Constacts.constant";
-import { IProductsList, ProductsListActionsTypes } from "./Constacts.type";
+} from "./Products.constant";
+import { IProductsList, ProductsListActionsTypes } from "./Products.type";
 
 const initialState: IProductsList = {
   isLoading: false,
@@ -27,6 +27,7 @@ export default function productsReducer(
       return {
         ...state,
         isLoading: false,
+        errors: action.payload,
       };
 
     default:

@@ -5,6 +5,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import routes from "./views";
+import WidgetsAlert from "widgets/Alert";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -25,6 +26,7 @@ const router = createBrowserRouter(
 function App() {
   return (
     <div className="App">
+      <WidgetsAlert />
       <RouterProvider router={router} />
     </div>
   );

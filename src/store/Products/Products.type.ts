@@ -3,7 +3,7 @@ import {
   GET_PRODUCTS_LIST_FAILURE,
   GET_PRODUCTS_LIST_REQUEST,
   GET_PRODUCTS_LIST_SUCCESS,
-} from "./Constacts.constant";
+} from "./Products.constant";
 import { IProductsResponseBody } from "entities/types/Products";
 
 export interface IProductsList {

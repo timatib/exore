@@ -1,0 +1,10 @@
+.cardPriceWrapper {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-top: 25px;
+
+  span {
+    font-size: 30px;
+  }
+}

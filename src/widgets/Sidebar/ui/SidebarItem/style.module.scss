@@ -1,19 +1,17 @@
 @import "assets/scss/colors.scss";
 
 .sidebar__list__item {
-  color: $white;
+  background-color: $white;
+  color: $black;
 
   &.sidebar__list__item_selected {
-    color: $primary-text;
+    color: $white;
+    background-color: $black;
 
     li {
       width: 100%;
       position: relative;
-      background: $menu-list-bg-hover;
+      background: $black;
     }
-  }
-
-  &:hover {
-    color: $primary-text;
   }
 }

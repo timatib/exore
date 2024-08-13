@@ -1,0 +1,23 @@
+.wrapper {
+  .cardPriceWrapper {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-top: 25px;
+
+    span {
+      font-size: 30px;
+    }
+  }
+
+  :global {
+    .ant-card-cover {
+      img {
+        width: 300px;
+        height: 400px;
+        object-fit: contain;
+        margin: 0 auto;
+      }
+    }
+  }
+}

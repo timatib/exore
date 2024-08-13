@@ -1,6 +1,6 @@
 // @import './fonts.scss';
 // @import './sizes.scss';
-@import './colors.scss';
+@import "./colors.scss";
 // @import './mixins.scss';
 // @import './z-index.scss';
 // @import './typography.scss';
@@ -16,6 +16,12 @@ a {
   text-decoration: none;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
 p {
   margin: 0;
 }

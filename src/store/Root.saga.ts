@@ -1,6 +1,7 @@
 import { all } from "redux-saga/effects";
-import { productsWatchers } from "./Products/Constacts.saga";
+import { productsWatchers } from "./Products/Products.saga";
+import { productsCurrentWatchers } from "./Products/Edit/ProductsCurrent.saga";
 
 export function* rootSagas() {
-  yield all([...productsWatchers]);
+  yield all([...productsWatchers, ...productsCurrentWatchers]);
 }

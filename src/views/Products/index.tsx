@@ -1,37 +1,41 @@
 import { Card, Spin } from "antd";
 import Meta from "antd/es/card/Meta";
-import { QUERY_CONSTANT } from "entities/common/constant";
-import { useEffect, useMemo } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getProductsListRequest } from "store/Products/Constacts.action";
-import { QueryHelper } from "utils/helpers";
+import { useCallback, useMemo } from "react";
+import { useSelector } from "react-redux";
 import styles from "./style.module.scss";
 import ProductsHeader from "modules/Products/Header";
+import useError from "hooks/useError";
+import { useNavigate } from "react-router-dom";
+import { PRODUCTS_CURRENT } from "utils/link";
+import UICard from "ui/Card";
 
 const ViewProducts = () => {
-  const dispatch = useDispatch();
-  const { isLoading, data } = useSelector(
+  const navigate = useNavigate();
+  const { isLoading, data, errors } = useSelector(
     (store: IRootState) => store.products
   );
 
-  useEffect(() => {
-    dispatch(
-      getProductsListRequest(
-        QueryHelper.getQueryString({
-          [QUERY_CONSTANT.LIMIT]: 8,
-        })
-      )
-    );
-  }, [dispatch]);
+  useError({ isError: !!errors });
+
+  const handleCardClick = useCallback(
+    (id: string) => {
+      navigate(PRODUCTS_CURRENT.replace(":id", id));
+    },
+    [navigate]
+  );
 
   const renderList = useMemo(
     () =>
       data?.map(({ description, image, title, id }) => (
-        <Card key={id} hoverable cover={<img src={image} alt="icon" />}>
-          <Meta title={title} description={description} />
-        </Card>
+        <UICard
+          key={id}
+          handler={() => handleCardClick(String(id))}
+          description={description}
+          image={image}
+          title={title}
+        />
       )),
-    [data]
+    [data, handleCardClick]
   );
 
   return (

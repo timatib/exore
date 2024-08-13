@@ -1,9 +1,12 @@
 import { call, fork, put, takeLatest } from "redux-saga/effects";
-import { GET_PRODUCTS_LIST_REQUEST } from "./Constacts.constant";
+import { GET_PRODUCTS_LIST_REQUEST } from "./Products.constant";
 import { IProductsResponseBody } from "entities/types/Products";
 import { getProductsListApi } from "services/http/Products";
-import { getProductsListSuccess } from "./Constacts.action";
-import { IGetProductsListRequest } from "./Constacts.type";
+import {
+  getProductsListFailure,
+  getProductsListSuccess,
+} from "./Products.action";
+import { IGetProductsListRequest } from "./Products.type";
 
 function* workerGetProductsList({ payload }: IGetProductsListRequest) {
   try {
@@ -13,8 +16,12 @@ function* workerGetProductsList({ payload }: IGetProductsListRequest) {
     );
 
     yield put(getProductsListSuccess(data));
-  } catch (error) {
-    console.log("error");
+  } catch (error: { massage: string } | unknown) {
+    yield put(
+      getProductsListFailure({
+        errors: (error as { massage: string })?.massage as string,
+      })
+    );
   }
 }
 

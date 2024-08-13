@@ -1,13 +1,19 @@
-import { SettingOutlined } from "@ant-design/icons";
+import { DatabaseOutlined, HddOutlined } from "@ant-design/icons";
 
 import { SidebarType } from "../types";
-import { PRODUCTS } from "utils/link";
+import { PRODUCTS_LOCAL, PRODUCTS } from "utils/link";
 
 export const sidebarLinks: SidebarType[] = [
   {
-    icon: <SettingOutlined />,
-    sidebarKey: "SIDEBAR.PRODUCTS_CURRENT",
+    icon: <DatabaseOutlined />,
+    sidebarKey: "SIDEBAR.PRODUCTS",
     label: "Products",
     link: PRODUCTS,
+  },
+  {
+    icon: <HddOutlined />,
+    sidebarKey: "SIDEBAR.PRODUCTS_LOCAL",
+    label: "Products local",
+    link: PRODUCTS_LOCAL,
   },
 ];
