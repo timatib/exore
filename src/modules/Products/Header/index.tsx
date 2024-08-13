@@ -5,12 +5,13 @@ import { useDispatch } from "react-redux";
 import { getProductsListRequest } from "store/Products/Products.action";
 import { QueryHelper } from "utils/helpers";
 import { QUERY_CONSTANT, QUERY_SORT_VALUES } from "entities/common/constant";
-import { useEffect } from "react";
+import { memo, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import {
   VerticalAlignBottomOutlined,
   VerticalAlignTopOutlined,
 } from "@ant-design/icons";
+import { UIHeaderWrapper } from "ui";
 
 const ProductsHeader = () => {
   const dispatch = useDispatch();
@@ -36,9 +37,9 @@ const ProductsHeader = () => {
       location.pathname +
         QueryHelper.getQueryString({
           [QUERY_CONSTANT.SORT]:
-            sortValue === QUERY_SORT_VALUES.ASC
-              ? QUERY_SORT_VALUES.DESC
-              : QUERY_SORT_VALUES.ASC,
+            sortValue === QUERY_SORT_VALUES.DESC
+              ? QUERY_SORT_VALUES.ASC
+              : QUERY_SORT_VALUES.DESC,
         })
     );
   };
@@ -60,11 +61,11 @@ const ProductsHeader = () => {
   }, [dispatch, location.pathname]);
 
   return (
-    <div className={styles.wrapper}>
+    <UIHeaderWrapper>
       <div className={styles.btn}>
         <Button type="primary" onClick={handlerSort}>
           Sort
-          {sortValue === QUERY_SORT_VALUES.ASC ? (
+          {sortValue === QUERY_SORT_VALUES.DESC ? (
             <VerticalAlignTopOutlined />
           ) : (
             <VerticalAlignBottomOutlined />
@@ -82,8 +83,8 @@ const ProductsHeader = () => {
           </Button>
         ))}
       </div>
-    </div>
+    </UIHeaderWrapper>
   );
 };
 
-export default ProductsHeader;
+export default memo(ProductsHeader);

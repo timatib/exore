@@ -1,5 +1,4 @@
-import { Card, Spin } from "antd";
-import Meta from "antd/es/card/Meta";
+import { Empty, Spin } from "antd";
 import { useCallback, useMemo } from "react";
 import { useSelector } from "react-redux";
 import styles from "./style.module.scss";
@@ -11,6 +10,7 @@ import UICard from "ui/Card";
 
 const ViewProducts = () => {
   const navigate = useNavigate();
+
   const { isLoading, data, errors } = useSelector(
     (store: IRootState) => store.products
   );
@@ -26,13 +26,14 @@ const ViewProducts = () => {
 
   const renderList = useMemo(
     () =>
-      data?.map(({ description, image, title, id }) => (
+      data?.map(({ description, image, title, id, price }) => (
         <UICard
           key={id}
           handler={() => handleCardClick(String(id))}
           description={description}
           image={image}
           title={title}
+          price={price}
         />
       )),
     [data, handleCardClick]
@@ -43,7 +44,11 @@ const ViewProducts = () => {
       <ProductsHeader />
 
       <Spin spinning={isLoading}>
-        <div className={styles.list}> {renderList}</div>
+        {!!renderList?.length && (
+          <div className={styles.list}> {renderList}</div>
+        )}
+
+        {!renderList?.length && <Empty />}
       </Spin>
     </main>
   );

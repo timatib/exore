@@ -1,14 +1,16 @@
-import { Card } from "antd";
+import { Card, Rate } from "antd";
 import Meta from "antd/es/card/Meta";
 import { FC } from "react";
 import style from "./style.module.scss";
 
 type PropsType = {
-  image: string;
+  image?: string;
   handler?: () => void;
   description?: string;
   title?: string;
   price?: number;
+  hoverable?: boolean;
+  rating?: number;
 };
 
 const UICard: FC<PropsType> = ({
@@ -17,16 +19,24 @@ const UICard: FC<PropsType> = ({
   description,
   title,
   price,
+  rating,
+  hoverable = true,
 }) => {
   return (
-    <Card hoverable cover={<img src={image} alt="icon" />} onClick={handler}>
+    <Card
+      hoverable={hoverable}
+      cover={<img src={image} alt="icon" />}
+      onClick={handler}
+    >
+      {rating && (
+        <Rate disabled defaultValue={rating} className={style.rating} />
+      )}
+
       <Meta title={title} description={description} />
 
-      {price && (
-        <div className={style.cardPriceWrapper}>
-          Price: <span>{price}</span>
-        </div>
-      )}
+      <div className={style.price}>
+        Price: <span>{price} $</span>
+      </div>
     </Card>
   );
 };

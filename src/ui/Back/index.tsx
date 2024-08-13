@@ -5,7 +5,7 @@ import style from "./style.module.scss";
 
 type PropsTypes = {
   onBack: () => void;
-  title: string;
+  title?: string;
 };
 
 const UIBack: FC<PropsTypes> = ({ onBack, title = "" }) => {
@@ -14,6 +14,7 @@ const UIBack: FC<PropsTypes> = ({ onBack, title = "" }) => {
       <Button onClick={onBack} type="primary">
         <LeftOutlined /> Back
       </Button>
+
       <h3>{title}</h3>
     </div>
   );

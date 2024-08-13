@@ -1,5 +1,4 @@
-import { Card, Spin } from "antd";
-import Meta from "antd/es/card/Meta";
+import { Spin } from "antd";
 import useError from "hooks/useError";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -22,9 +21,9 @@ const ViewProductsCurrent = () => {
     (store: IRootState) => store.productsCurrent
   );
 
-  const { description, image, title, price } = data || {};
-
   useError({ isError: !!errors });
+
+  const { description, image, title, price, rating } = data || {};
 
   const handleBack = () => {
     navigate(PRODUCTS);
@@ -44,14 +43,16 @@ const ViewProductsCurrent = () => {
 
   return (
     <main className={style.wrapper}>
-      <UIBack onBack={handleBack} title={title || ""} />
+      <UIBack onBack={handleBack} title={title} />
 
       <Spin spinning={isLoading}>
         <UICard
           description={description}
-          image={image || ""}
+          image={image}
           title={title}
           price={price}
+          hoverable={false}
+          rating={rating?.rate}
         />
       </Spin>
     </main>

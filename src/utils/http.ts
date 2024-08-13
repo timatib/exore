@@ -16,6 +16,6 @@ function GET(url: string, config: AxiosRequestConfig = {}) {
   });
 }
 
-export { GET }
+export { GET };
 
-export default http
+export default http;
